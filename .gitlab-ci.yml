@@ -1,0 +1,38 @@
+image: maven:3.6.3-openjdk-11-slim
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+    
+stages:
+  - compile
+  - evaluation
+
+Überprüfe Syntax:
+  stage: compile
+  script:
+    - mvn -U clean compile
+
+Summary Report:
+  stage: evaluation
+  script:
+    - mvn -U clean verify exec:java -Dmaven.test.failure.ignore=true
+  artifacts:
+    paths:
+      - grading.html
+    reports:
+      junit: target/surefire-reports/*.xml
+
+Prüfe Lösung:
+  stage: evaluation
+  script:
+    - mvn -U clean test
+
+Prüfe Stil:
+  stage: evaluation
+  script:
+    - mvn -U clean verify -Dmaven.test.failure.ignore=true -Dcheckstyle.failOnViolation=true -Dcheckstyle.violationSeverity=warning
