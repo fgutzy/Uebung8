@@ -11,8 +11,8 @@
 
   <packaging>jar</packaging>
 
-  <name>HM-Kara-Blueprint</name>
-  <description>Basisprojekt für HM-Kara-Aufgaben</description>
+  <name>DEV1-Blueprint</name>
+  <description>Basisprojekt Java-Aufgaben</description>
 
   <properties>
     <source.encoding>UTF-8</source.encoding>
