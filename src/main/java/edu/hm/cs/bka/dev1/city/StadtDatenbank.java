@@ -5,29 +5,29 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class CityDataBase {
+public class StadtDatenbank {
 
   // Dieses Array wird durch den Konstruktor durch Einlesen einer Datei initialisiert!
-  private final City[] cities;
+  private final Stadt[] cities;
 
   /**
    * Liefert die Liste aller Staedte, die innerhalb des angegebenen Radius um die gegebenen
    * Koordinaten liegen.
    *
-   * @param latitude  Breitengrad (Nord) der Anfrage
-   * @param longitude Laengengrad (Ost) der Anfrage
-   * @param radius    Radius in km
+   * @param breitengrad Breitengrad (Nord) der Anfrage
+   * @param laengengrad Laengengrad (Ost) der Anfrage
+   * @param radius      Radius in km
    * @return Array mit den Staedten, die die Anfrage erfuellen
    */
-  public City[] findCities(final double latitude, final double longitude, final double radius) {
+  public Stadt[] findeStaedte(final double breitengrad, final double laengengrad,
+                              final double radius) {
     //TODO: Erstellen Sie hier ein Array mit allen Städten, die im Radius
     // liegen. Nutzen Sie dafür die implementierte Abstandsmessung!
-    return new City[0];
+    return new Stadt[0];
   }
 
   /* Diesen Teil nicht aendern! Hier wird eine Liste von Staedten aus einer Datei eingelesen. */
@@ -35,17 +35,23 @@ public class CityDataBase {
   /**
    * Erstellt eine Datenbank auf Basis einer hinterlegten Excel-Datei.
    *
-   * @param file Excel-Datei.
+   * @param datei Excel-Datei.
    */
-  public CityDataBase(String file) {
-    cities = readCityDataBase(file);
+  public StadtDatenbank(String datei) {
+    cities = leseDatenbankAusDatei(datei);
   }
 
-  private static City[] readCityDataBase(String file) {
+  /**
+   * Hilfsmethode zum Einlesen einer Datenbank aus einer Datei.
+   *
+   * @param datei Excel-Datei
+   * @return Enthaltene Städte als Array.
+   */
+  private static Stadt[] leseDatenbankAusDatei(String datei) {
     System.out.print("Initialisiere DB...");
-    List<City> result = new ArrayList<>();
+    List<Stadt> result = new ArrayList<>();
     try {
-      URL resourceUrl = ClassLoader.getSystemResource(file);
+      URL resourceUrl = ClassLoader.getSystemResource(datei);
       URI resourceUri = new URI(resourceUrl.toString());
       String systemResource = resourceUri.getPath();
       Workbook workbook = WorkbookFactory.create(new File(systemResource));
@@ -57,7 +63,7 @@ public class CityDataBase {
         double latitude = Float.parseFloat(row.getCell(2).toString()) / 1000.0;
         double longitude = Float.parseFloat(row.getCell(3).toString()) / 1000.0;
 
-        City c = new City(name, latitude, longitude, citizens);
+        Stadt c = new Stadt(name, latitude, longitude, citizens);
         result.add(c);
       });
       workbook.close();
@@ -67,7 +73,7 @@ public class CityDataBase {
       System.exit(0);
     }
     System.out.println(result.size() + " Staedte gelesen.");
-    return result.toArray(new City[0]);
+    return result.toArray(new Stadt[0]);
 
   }
 }

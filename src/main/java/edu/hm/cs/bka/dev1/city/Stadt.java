@@ -3,7 +3,7 @@ package edu.hm.cs.bka.dev1.city;
 /**
  * Diese Klasse repraesentiert eine Stadt.
  */
-public class City {
+public class Stadt {
 
   private final String name;
   private final double breitengrad;
@@ -18,8 +18,8 @@ public class City {
    * @param laengengrad Längengrad
    * @param citizens    Bevölkerungsgröße
    */
-  public City(final String name, final double breitengrad, final double laengengrad,
-              final int citizens) {
+  public Stadt(final String name, final double breitengrad, final double laengengrad,
+               final int citizens) {
     this.name = name;
     this.breitengrad = breitengrad;
     this.laengengrad = laengengrad;
@@ -38,7 +38,7 @@ public class City {
     return laengengrad;
   }
 
-  public int getPopulation() {
+  public int getEinwohner() {
     return einwohner;
   }
 
@@ -48,7 +48,7 @@ public class City {
    * @param laengengrad Längengrad der Position zur Abstandsmessung
    * @return Abstand in km
    */
-  public double distanceTo(final double breitengrad, final double laengengrad) {
+  public double berechneAbstand(final double breitengrad, final double laengengrad) {
     // TODO: Entfernungsmessung implementieren!
     return 0.0;
   }
