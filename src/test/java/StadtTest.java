@@ -1,8 +1,21 @@
 import edu.hm.cs.bka.dev1.city.Stadt;
+import java.lang.reflect.Field;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.support.ModifierSupport;
 
 public class StadtTest {
+
+  @Test
+  public void hatKonstanten() {
+    int constants = 0;
+    for (Field f : Stadt.class.getDeclaredFields()) {
+      if (ModifierSupport.isFinal(f) && ModifierSupport.isStatic(f)) {
+        constants++;
+      }
+    }
+    Assertions.assertTrue(constants >= 2, "Es fehlen Konstanten in Klasse Stadt!");
+  }
 
   @Test
   public void test1DistanceHamburgKarlsruhe() {
