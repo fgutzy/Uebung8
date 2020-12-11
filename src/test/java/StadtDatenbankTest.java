@@ -1,8 +1,10 @@
 import edu.hm.cs.bka.dev1.city.Stadt;
 import edu.hm.cs.bka.dev1.city.StadtDatenbank;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 public class StadtDatenbankTest {
 
@@ -14,6 +16,7 @@ public class StadtDatenbankTest {
   }
 
   @Test
+  @Timeout(30)
   public void test1() {
     Stadt[] result = sut.findeStaedte(50, 10, 20);
     Stadt[] allCities = sut.findeStaedte(50, 10, 20000);
