@@ -44,6 +44,7 @@ public class Stadt {
 
   /**
    * Berechnet die Entfernung der Stadt von einer gegebenen Position.
+   *
    * @param breitengrad Breitengrad der Position zur Abstandsmessung
    * @param laengengrad Längengrad der Position zur Abstandsmessung
    * @return Abstand in km
