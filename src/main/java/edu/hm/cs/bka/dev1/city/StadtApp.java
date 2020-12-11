@@ -5,7 +5,7 @@ import edu.hm.cs.bka.dev1.helper.InputHelper;
 /**
  * Kleine Anwendung zur Ermittelung der Einwohnerdichte in Gebieten Deutschlands.
  */
-public class StadtDemo {
+public class StadtApp {
 
   /**
    *  Hauptprogramm.

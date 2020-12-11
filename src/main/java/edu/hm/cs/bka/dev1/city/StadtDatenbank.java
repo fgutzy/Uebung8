@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class StadtDatenbank {
 
   // Dieses Array wird durch den Konstruktor durch Einlesen einer Datei initialisiert!
-  private final Stadt[] cities;
+  private final Stadt[] staedte;
 
   /**
    * Liefert die Liste aller Staedte, die innerhalb des angegebenen Radius um die gegebenen
@@ -38,7 +38,7 @@ public class StadtDatenbank {
    * @param datei Excel-Datei.
    */
   public StadtDatenbank(String datei) {
-    cities = leseDatenbankAusDatei(datei);
+    staedte = leseDatenbankAusDatei(datei);
   }
 
   /**
