@@ -1,7 +1,9 @@
 package edu.hm.cs.bka.dev1.city;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,7 @@ public class StadtDatenbank {
       });
       workbook.close();
 
-    } catch (Exception e) {
+    } catch (URISyntaxException | IOException e) {
       System.out.println("Datei konnte nicht gelesen werden!");
       System.exit(0);
     }
